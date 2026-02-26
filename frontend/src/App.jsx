@@ -1,14 +1,10 @@
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Login from "./app/auth/page/login"; // chỉnh đúng path file của bạn
 
-function App() {
+export default function App() {
   return (
-    <div className=" flex  bg-gray-100">
-      <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg w-50">
-        Click me
-      </button>
-    </div>
-  )
+    <Routes>
+      <Route path="/login" element={<Login />} />
+    </Routes>
+  );
 }
-
-
-export default App
