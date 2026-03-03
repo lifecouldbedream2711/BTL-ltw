@@ -1,7 +1,10 @@
 import icon from "../../assets/icon.png";
 import TextInput from "../../components/input/textInput";
+import SelectInput from "../../components/input/selectInput";
+import SubButton from "../../components/button/SubButton";
+import DateInput from "../../components/input/DateInput";
 
-
+const Gender=["male","female"];
 
 export default function Regist() {
   return (
@@ -25,11 +28,11 @@ export default function Regist() {
             </div>
             <div className="w-[45%]">
               <label htmlFor="">Date of Birth</label>
-              <TextInput id="full-name" placeholder="Phùng Thanh Độ"></TextInput>
+              <DateInput></DateInput>
             </div>
             <div className="w-[45%]">
               <label htmlFor="">Gender</label>
-              <TextInput id="full-name" placeholder="Phùng Thanh Độ"></TextInput>
+              <SelectInput Options={Gender} ></SelectInput>
             </div>
             <div className="w-[45%]">
               <label htmlFor="address">Address</label>
@@ -43,7 +46,13 @@ export default function Regist() {
               <label htmlFor="confirm-password">Confirm password</label>
               <TextInput id="confirm-password" placeholder="*******"></TextInput>
             </div>
+          
           </div>
+            <SubButton text={"Create account"}></SubButton>
+            <div className="text-center mt-2">
+              <span>Already have an account? </span>
+              <a href="/" className="text-[#0EA4B5]">Sign in here</a>
+            </div>
       </div>
     </div>);
 }

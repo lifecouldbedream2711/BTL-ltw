@@ -11,22 +11,23 @@ export default function Login() {
         <div className="bg-white w-[33%] h-[85%] rounded-md shadow-2xl">
           <div className="p-5 w-full h-auto ">
             <img src={icon} alt="" className="w-[20%] h-auto mx-auto mt-10" />
-            <div className="font-bold  text-3xl text-center text-[#0EA4B5]">Login</div>
-            <div className="mt-5 ml-[5%] ">
-              <div>
-              <label htmlFor="Phone">Số điện thoại</label>
+            <div className="font-bold  text-2xl text-center text-[#0EA4B5]">Welcome back</div>
+            <p className="text-center opacity-40">sign in to your account to countine</p>
+            <div className="mt-2 ml-[5%] ">
+              <div className="w-full">
+              <label htmlFor="Phone" className="font-medium">Số điện thoại</label>
               <TextInput
                 id="Phone"
                 placeholder="Phone"
               />
               </div>
-              <label htmlFor="Password">Mật khẩu</label>
+              <label htmlFor="Password"  className="font-medium">Mật khẩu</label>
               <TextInput
                 id="Password"
                 placeholder="Password"
               />
-              <SubButton text="login"/>
-              <div className="text-center ">
+              <SubButton text="Sign in" className="mt-4" onClick={}/>
+              <div className="text-center mt- 5">
                 <span>Chưa có tài khoản ? </span>
                 <a href="/regist" on className=" text-[#0EA4B5] underline" >Đăng ký</a>
               </div>
