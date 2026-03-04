@@ -2,8 +2,11 @@ import imgLog from "../../../assets/log.png";
 import icon from "../../../assets/icon.png";
 import TextInput from "../../../components/input/textInput";
 import SubButton from "../../../components/button/SubButton";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Login() {
+  const navigate = useNavigate();
   return (
     <div className="bg-[#C7EBEE] h-screen w-screen flex items-center justify-center">
       <div className="bg-[#EBF2F4] h-[80%] w-[80%] rounded-2xl flex items-center ">
@@ -26,7 +29,7 @@ export default function Login() {
                 id="Password"
                 placeholder="Password"
               />
-              <SubButton text="Sign in" className="mt-4" onClick={}/>
+              <SubButton text="Sign in" className="mt-4" onClick={() => navigate("/patient")}/>
               <div className="text-center mt- 5">
                 <span>Chưa có tài khoản ? </span>
                 <a href="/regist" on className=" text-[#0EA4B5] underline" >Đăng ký</a>

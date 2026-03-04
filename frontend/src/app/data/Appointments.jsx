@@ -1,0 +1,28 @@
+export const appointmentsSeed = [
+  {
+    id: 1,
+    status: "APPROVED",
+    doctorName: "Dr. Sarah Johnson",
+    specialty: "Cardiology",
+    serviceName: "Cardiac Consultation",
+    price: 150,
+    durationMin: 45,
+    dateText: "Tuesday, February 10, 2026",
+    timeText: "04:00 PM",
+    reason: "Routine cardiac checkup",
+    initials: "DSJ",
+  },
+  {
+    id: 2,
+    status: "PENDING",
+    doctorName: "Dr. Michael Lee",
+    specialty: "Dermatology",
+    serviceName: "Skin Examination",
+    price: 90,
+    durationMin: 30,
+    dateText: "Friday, March 6, 2026",
+    timeText: "10:30 AM",
+    reason: "Rash consultation",
+    initials: "DML",
+  },
+];
