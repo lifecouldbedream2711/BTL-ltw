@@ -7,6 +7,8 @@ export const doctors = [
     bio: "Experienced cardiologist with over 15 years of practice. Specializes in preventive cardiology and heart disease management.",
     phone: "555-0101",
     initials: "DSJ",
+    email: "sarah.johnson@clinic.com",
+    is_active: true,
   },
   {
     id: "doc-2",
@@ -16,6 +18,8 @@ export const doctors = [
     bio: "Board-certified dermatologist specializing in cosmetic and medical dermatology.",
     phone: "555-0102",
     initials: "DMC",
+    email: "michael.chen@clinic.com",
+    is_active: true,
   },
   {
     id: "doc-3",
@@ -25,6 +29,8 @@ export const doctors = [
     bio: "Pediatrician dedicated to comprehensive care for infants, children, and adolescents. Focus on preventive care and family guidance.",
     phone: "555-0103",
     initials: "DER",
+    email: "emily.rodriguez@clinic.com",
+    is_active: true,
   },
   {
     id: "doc-4",
@@ -34,6 +40,8 @@ export const doctors = [
     bio: "Orthopedic surgeon focusing on sports injuries, joint pain, and minimally invasive treatment options.",
     phone: "555-0104",
     initials: "DJP",
+    email: "james.patel@clinic.com",
+    is_active: true,
   },
   {
     id: "doc-5",
@@ -43,6 +51,8 @@ export const doctors = [
     bio: "Neurologist specializing in headache disorders, epilepsy, and nervous system diagnostics with patient-centered care.",
     phone: "555-0105",
     initials: "DON",
+    email: "olivia.nguyen@clinic.com",
+    is_active: true,
   },
   {
     id: "doc-6",
@@ -52,5 +62,7 @@ export const doctors = [
     bio: "Primary care physician providing routine checkups, chronic disease management, and personalized wellness plans.",
     phone: "555-0106",
     initials: "DDK",
+    email: "daniel.kim@clinic.com",
+    is_active: true,
   },
 ];

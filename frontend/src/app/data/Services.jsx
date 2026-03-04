@@ -7,6 +7,7 @@ export const services = [
     price: 150.0,
     durationMin: 45,
     doctorsAvailable: 0,
+    is_active: true,
   },
   {
     id: "srv-2",
@@ -16,15 +17,17 @@ export const services = [
     price: 75.0,
     durationMin: 30,
     doctorsAvailable: 0,
+    is_active: true,
   },
   {
-    id: "srv-3",
+    id: "srv-3",    
     title: "Skin Consultation",
     specialty: "Dermatology",
     description: "General dermatology consultation",
     price: 120.0,
     durationMin: 30,
     doctorsAvailable: 0,
+    is_active: true,
   },
   {
     id: "srv-4",
@@ -34,6 +37,7 @@ export const services = [
     price: 100.0,
     durationMin: 30,
     doctorsAvailable: 0,
+    is_active: true,
   },
   {
     id: "srv-5",
@@ -43,6 +47,7 @@ export const services = [
     price: 80.0,
     durationMin: 30,
     doctorsAvailable: 0,
+    is_active: true,
   },
   {
     id: "srv-6",
@@ -52,5 +57,6 @@ export const services = [
     price: 60.0,
     durationMin: 20,
     doctorsAvailable: 0,
+    is_active: true,
   },
 ];

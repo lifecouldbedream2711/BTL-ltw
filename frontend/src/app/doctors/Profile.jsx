@@ -54,11 +54,11 @@ export default function Profile() {
                     <TextInput id="profile-address" value={user.profile.address} readOnly />
                 </div>
                 <div className="w-[35%]">
-                    <label htmlFor="profile-allergies">Allergies:</label>   
+                    <label htmlFor="profile-allergies">License no:</label>   
                     <TextInput id="profile-allergies" value={user.profile.allergies} readOnly />
                 </div>
                 <div className="w-[35%]">
-                    <label htmlFor="profile-medical-history">Medical History:</label>
+                    <label htmlFor="profile-medical-history">Bio:</label> <br />
                     <TextInput id="profile-medical-history" value={user.profile.medical_history} readOnly />
                 </div>
             </div>

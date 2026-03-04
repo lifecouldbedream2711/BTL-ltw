@@ -2,6 +2,7 @@
  export const allAppointments = [
   {
     id: 1,
+    patientName: "John Doe",
     status: "APPROVED", // upcoming
     doctorName: "Dr. Sarah Johnson",
     specialty: "Cardiology",
@@ -15,6 +16,7 @@
   },
   {
     id: 2,
+    patientName: "Jane Smith",
     status: "PENDING", // upcoming
     doctorName: "Dr. Michael Lee",
     specialty: "Dermatology",
@@ -28,6 +30,7 @@
   },
   {
     id: 3,
+    patientName: "Robert Brown",
     status: "DONE", // history
     doctorName: "Dr. Emma Wilson",
     specialty: "General Practice",

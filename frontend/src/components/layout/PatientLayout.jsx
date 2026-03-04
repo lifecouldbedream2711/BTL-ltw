@@ -13,7 +13,7 @@ export default function PatientLayout({
     <Background className="relative">
       <PatientHeader />
       <div className="flex">
-        <SideBar className="w-64 shrink-0 items-start">
+        <SideBar >
           <SideBarButton active={activeTab === "search"} onClick={() => setActiveTab("search")}>
             <i className="fa-solid fa-magnifying-glass" />
             <p>Search</p>

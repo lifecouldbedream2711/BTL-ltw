@@ -2,14 +2,14 @@
 
 export default function AppointmentCard({ appointment, children }) {
     return (
-        <div className="border border-gray-200 rounded-lg p-4 mb-4">
+        <div className=" bg-white rounded-lg p-4 mb-4">
             <div className="flex justify-between items-center">
                 <div>
                     <p className="font-medium">{appointment.doctorName}</p>
                     <p className="text-sm opacity-75">{appointment.specialty}</p>
                 </div>
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    appointment.status === "APPROVED" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"
+                    appointment.status === "APPROVED" ? " bg-sky-800 text-white" :  appointment.status === "DONE"?"text-green-800 bg-green-100":  "bg-yellow-100 text-yellow-800"
                 }`}>
                     {appointment.status}
                 </span>

@@ -2,6 +2,7 @@ export const appointmentsSeed = [
   {
     id: 1,
     status: "APPROVED",
+    patientName: "John Doe",
     doctorName: "Dr. Sarah Johnson",
     specialty: "Cardiology",
     serviceName: "Cardiac Consultation",
@@ -15,6 +16,7 @@ export const appointmentsSeed = [
   {
     id: 2,
     status: "PENDING",
+    patientName: "Jane Smith",
     doctorName: "Dr. Michael Lee",
     specialty: "Dermatology",
     serviceName: "Skin Examination",
