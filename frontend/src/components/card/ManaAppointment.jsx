@@ -1,3 +1,7 @@
+import SubButton from "../button/subButton";
+
+
+
 export default function ManaAppointment(props) {
     
   const appointment = props.appointment ?? props;
@@ -13,10 +17,11 @@ export default function ManaAppointment(props) {
       ? "bg-purple-100 text-purple-700"
       : "bg-gray-100 text-gray-700"; // PENDING/others
 
-  // lấy date ở góc phải: cố lấy từ dateText (string) hoặc fallback "-"
+
   const topRightDate = appointment?.topRightDate ?? appointment?.shift_date ?? "-";
 
   const showCheckInButton = status === "APPROVED";
+  const showApproveButton = status === "PENDING";
 
   const handleCheckIn = () => {
 
@@ -96,7 +101,9 @@ export default function ManaAppointment(props) {
           <i className="fa-regular fa-circle-check" />
           Check In
         </button>
-      ) : null}
+      ) : showApproveButton ? (<div className="mt-5 w-40">
+      <SubButton>Approve</SubButton> 
+      </div> ) : null }
     </div>
   );
 }

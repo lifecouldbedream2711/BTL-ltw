@@ -3,7 +3,7 @@ import { useState } from "react";
 import Schedule from "./Schedule";
 import Profile from "./Profile";
 export default function Doctor() {
-    const [activeTab, setActiveTab] = useState("search");
+    const [activeTab, setActiveTab] = useState("schedule");
     return (
         <DoctorLayout activeTab={activeTab} setActiveTab={setActiveTab}>
         {activeTab === "schedule" && <Schedule />}

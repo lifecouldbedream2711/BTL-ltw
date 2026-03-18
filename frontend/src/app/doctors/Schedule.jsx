@@ -41,19 +41,18 @@ const events = [
   },
 ];
 
-// tính vị trí theo giờ (mỗi ô 1 giờ = 96px)
 const ROW_HEIGHT = 96;
 const toMinutes = (t) => {
   const [h, m] = t.split(":").map(Number);
   return h * 60 + m;
 };
-const startBase = toMinutes(times[0]); // 08:00
+const startBase = toMinutes(times[0]); 
 
 export default function Schedule() {
   return (
     <div className="w-full h-screen bg-white rounded-2xl border border-gray-200 overflow-auto">
       {/* Header row */}
-      <div className="min-w-[980px]">
+      <div className="min-w-245">
         <div className="grid grid-cols-[120px_repeat(7,1fr)] border-b border-gray-200">
           <div className="p-4 text-sm font-semibold text-gray-700">Giờ</div>
           {days.map((d) => (

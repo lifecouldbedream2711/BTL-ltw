@@ -15,3 +15,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.SQLServerDialect
+
+jwt:
+  signerKey: "e1b21fc9050742ed210a4bc902b9d49d5a150b87d61956d9af7343d2b84c3818"

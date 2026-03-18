@@ -14,7 +14,7 @@ export default function AdminLayout({
     return (
         <Background>
             <AdminHeader></AdminHeader>
-            <div className="flex">
+            <div className="flex ">
                     <SideBar>
                         <SideBarButton
                             active={activeTab === "manageDoctors"}
