@@ -3,6 +3,8 @@ package quanly.kham_benh.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import quanly.kham_benh.Dto.request.DoctorCreationRequest;
+import quanly.kham_benh.Dto.request.PatientCreationRequest;
 import quanly.kham_benh.Dto.request.UserCreationRequest;
 import quanly.kham_benh.Dto.request.UserUpdateRequest;
 import quanly.kham_benh.Entity.Users;
@@ -11,4 +13,6 @@ import quanly.kham_benh.Entity.Users;
 public interface UserMapper {
     Users toUser(UserCreationRequest request);
     void UpdateUser(@MappingTarget Users users, UserUpdateRequest request);
+    Users toUser(PatientCreationRequest request);
+    Users toUser(DoctorCreationRequest request);
 }

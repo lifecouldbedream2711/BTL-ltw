@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -25,4 +26,9 @@ public class Users {
     String role;
     boolean is_active;
     LocalDateTime created_at;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PatientProfile patientProfile;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private DoctorProfile doctorProfile;
 }

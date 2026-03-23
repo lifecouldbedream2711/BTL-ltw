@@ -6,8 +6,6 @@ import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.NonFinal;
@@ -21,6 +19,7 @@ import quanly.kham_benh.Dto.request.AuthenticationRequest;
 import quanly.kham_benh.Dto.request.IntrospectRequest;
 import quanly.kham_benh.Dto.response.AuthenticationResponse;
 import quanly.kham_benh.Dto.response.IntrospectResponse;
+import quanly.kham_benh.Entity.Users;
 import quanly.kham_benh.Exception.AppException;
 import quanly.kham_benh.Exception.ErrorCode;
 import quanly.kham_benh.Repository.UserRepository;
@@ -69,7 +68,7 @@ public class AuthenticationService {
             throw new AppException(ErrorCode.UNAUTHENTICATED);
         }
 
-        var token= generateToken(request.getEmail());
+        var token= generateToken(user );
 
         return AuthenticationResponse.builder()
                 .authenticated(true)
@@ -77,16 +76,16 @@ public class AuthenticationService {
                 .build();
 
     }
-        private String generateToken(String email){
+        private String generateToken(Users users){
             JWSHeader header =new JWSHeader(JWSAlgorithm.HS512    );
 
             JWTClaimsSet jwtClaimsSet= new  JWTClaimsSet.Builder()
-                    .subject(email)
+                    .subject(users.getEmail())
                     .issuer("hello niggas")
                     .issueTime(new Date())
                     .expirationTime(new Date(Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()
                     ))
-                    .claim("customClaim","Custom")
+                    .claim("scope",users.getRole())
                     .build();
 
             Payload payload=new Payload(jwtClaimsSet.toJSONObject());

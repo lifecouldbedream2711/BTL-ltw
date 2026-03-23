@@ -1,20 +1,21 @@
-package quanly.kham_benh.Dto.request;
+package quanly.kham_benh.Dto.response;
 
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserCreationRequest {
+public class DoctorResponse {
     String phone;
     String full_name;
     String email;
-    String password;
+    String password_hash;
+    String license_no,bio;
+
 }
