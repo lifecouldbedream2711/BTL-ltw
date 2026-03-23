@@ -1,0 +1,59 @@
+package quanly.kham_benh.mapper;
+
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+import quanly.kham_benh.Dto.request.PatientCreationRequest;
+import quanly.kham_benh.Dto.response.PatientResponse;
+import quanly.kham_benh.Entity.PatientProfile;
+import quanly.kham_benh.Entity.Users;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2026-03-24T02:15:31+0700",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 24.0.2 (Oracle Corporation)"
+)
+@Component
+public class PatientMapperImpl implements PatientMapper {
+
+    @Override
+    public PatientResponse toPatientResponse(PatientProfile patientProfile, Users users) {
+        if ( patientProfile == null && users == null ) {
+            return null;
+        }
+
+        PatientResponse.PatientResponseBuilder patientResponse = PatientResponse.builder();
+
+        if ( patientProfile != null ) {
+            patientResponse.dob( patientProfile.getDob() );
+            patientResponse.gender( patientProfile.getGender() );
+            patientResponse.address( patientProfile.getAddress() );
+            patientResponse.allergies( patientProfile.getAllergies() );
+            patientResponse.medical_history( patientProfile.getMedical_history() );
+        }
+        if ( users != null ) {
+            patientResponse.phone( users.getPhone() );
+            patientResponse.full_name( users.getFull_name() );
+            patientResponse.email( users.getEmail() );
+            patientResponse.password_hash( users.getPassword_hash() );
+        }
+
+        return patientResponse.build();
+    }
+
+    @Override
+    public PatientProfile toPatientProfile(PatientCreationRequest request) {
+        if ( request == null ) {
+            return null;
+        }
+
+        PatientProfile.PatientProfileBuilder patientProfile = PatientProfile.builder();
+
+        patientProfile.dob( request.getDob() );
+        patientProfile.gender( request.getGender() );
+        patientProfile.address( request.getAddress() );
+        patientProfile.allergies( request.getAllergies() );
+        patientProfile.medical_history( request.getMedical_history() );
+
+        return patientProfile.build();
+    }
+}
