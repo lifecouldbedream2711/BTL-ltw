@@ -8,24 +8,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "doctor_shifts")
+@Table(name = "prescriptions")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Doctor_shifts {
+public class Prescription {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
-    String doctor_id;
-    LocalDate shift_date;
-    LocalTime start_time,end_time;
-    int slot_min,max_patients;
-    String note;
+    String appointment_id;
+    String content_text;
+    LocalDateTime created_at;
+
 }

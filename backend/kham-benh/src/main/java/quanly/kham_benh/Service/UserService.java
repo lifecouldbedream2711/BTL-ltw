@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import quanly.kham_benh.Dto.request.UserCreationRequest;
-import quanly.kham_benh.Entity.Users;
+import quanly.kham_benh.Entity.User;
 import quanly.kham_benh.Exception.AppException;
 import quanly.kham_benh.Exception.ErrorCode;
 import quanly.kham_benh.Repository.UserRepository;
@@ -25,12 +25,12 @@ public class UserService {
     private  UserRepository userRepository;
     @Autowired
     private UserMapper userMapper;
-    public Users createUser(UserCreationRequest request){
+    public User createUser(UserCreationRequest request){
 
         if(userRepository.existsByEmail(request.getEmail()))
             throw new AppException(ErrorCode.EMAIL_EXISTSED);
 
-        Users user= userMapper.toUser(request);
+        User user= userMapper.toUser(request);
         PasswordEncoder passwordEncoder =new BCryptPasswordEncoder(10);
         user.setPassword_hash(passwordEncoder.encode(request.getPassword()));
         user.setRole(String.valueOf(Role.PATIENT));
@@ -38,10 +38,10 @@ public class UserService {
         user.setCreated_at(LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")));
         return userRepository.save(user);
     }
-    public List<Users> getAllUser(){
+    public List<User> getAllUser(){
         return userRepository.findAll();
     }
-    public Users getUser(String id){
+    public User getUser(String id){
         return userRepository.findById(id).orElseThrow();
     }
 }

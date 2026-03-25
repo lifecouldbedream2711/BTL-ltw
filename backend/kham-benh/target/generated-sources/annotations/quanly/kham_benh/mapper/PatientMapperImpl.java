@@ -5,19 +5,19 @@ import org.springframework.stereotype.Component;
 import quanly.kham_benh.Dto.request.PatientCreationRequest;
 import quanly.kham_benh.Dto.response.PatientResponse;
 import quanly.kham_benh.Entity.PatientProfile;
-import quanly.kham_benh.Entity.Users;
+import quanly.kham_benh.Entity.User;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-03-24T02:15:31+0700",
+    date = "2026-03-25T17:49:54+0700",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 24.0.2 (Oracle Corporation)"
 )
 @Component
 public class PatientMapperImpl implements PatientMapper {
 
     @Override
-    public PatientResponse toPatientResponse(PatientProfile patientProfile, Users users) {
-        if ( patientProfile == null && users == null ) {
+    public PatientResponse toPatientResponse(PatientProfile patientProfile, User user) {
+        if ( patientProfile == null && user == null ) {
             return null;
         }
 
@@ -30,11 +30,12 @@ public class PatientMapperImpl implements PatientMapper {
             patientResponse.allergies( patientProfile.getAllergies() );
             patientResponse.medical_history( patientProfile.getMedical_history() );
         }
-        if ( users != null ) {
-            patientResponse.phone( users.getPhone() );
-            patientResponse.full_name( users.getFull_name() );
-            patientResponse.email( users.getEmail() );
-            patientResponse.password_hash( users.getPassword_hash() );
+        if ( user != null ) {
+            patientResponse.id( user.getId() );
+            patientResponse.phone( user.getPhone() );
+            patientResponse.full_name( user.getFull_name() );
+            patientResponse.email( user.getEmail() );
+            patientResponse.password_hash( user.getPassword_hash() );
         }
 
         return patientResponse.build();

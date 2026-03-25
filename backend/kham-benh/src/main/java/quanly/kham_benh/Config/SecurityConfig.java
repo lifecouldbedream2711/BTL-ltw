@@ -36,7 +36,11 @@ public class SecurityConfig {
             "/swagger-ui.html",
             "/swagger-ui/index.html",
             "/patient/**",
-            "/doctor/**"
+            "/doctor/**",
+            "/Admin/**",
+            "/Specialty/**",
+            "/Service/**",
+            "/**"
     };
     @NonFinal
     @Value("${jwt.signerKey}")

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import quanly.kham_benh.Dto.request.UserCreationRequest;
 import quanly.kham_benh.Dto.response.APIResponse;
-import quanly.kham_benh.Entity.Users;
+import quanly.kham_benh.Entity.User;
 import quanly.kham_benh.Service.UserService;
 
 import java.util.List;
@@ -18,23 +18,23 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/create")
-    public APIResponse<Users> createUser(@RequestBody UserCreationRequest request){
+    public APIResponse<User> createUser(@RequestBody UserCreationRequest request){
 
-        return APIResponse.<Users>builder().message("create user success")
+        return APIResponse.<User>builder().message("create user success")
                 .code(200)
                 .result( userService.createUser(request))
                 .build();
     }
 
     @GetMapping("/login")
-    public List<Users> getAllUser(){
+    public List<User> getAllUser(){
 
         return userService.getAllUser();
     }
 
 
     @GetMapping("/Get-user/{userId}")
-    public Users getUser(@PathVariable("userId") String id){
+    public User getUser(@PathVariable("userId") String id){
 
         return userService.getUser(id);
     }

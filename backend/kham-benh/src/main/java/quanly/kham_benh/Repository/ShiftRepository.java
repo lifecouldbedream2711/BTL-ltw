@@ -2,12 +2,13 @@ package quanly.kham_benh.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import quanly.kham_benh.Entity.Doctor_shifts;
-import quanly.kham_benh.Entity.Users;
+import quanly.kham_benh.Entity.Shift;
 
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.List;
 
 @Repository
-public interface ShiftRepository extends JpaRepository<Doctor_shifts,String> {
-
+public interface ShiftRepository extends JpaRepository<Shift,String> {
+    List<Shift> findByShiftDate(LocalDate shiftDate);
+    List<Shift> findByDoctorId(String id);
 }

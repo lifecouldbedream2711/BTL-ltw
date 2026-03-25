@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Users {
+public class User {
     @Id
     @Column(name = "id",length = 36)
     @GeneratedValue(strategy = GenerationType.UUID)

@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DoctorResponse {
+    String id;
     String phone;
     String full_name;
     String email;

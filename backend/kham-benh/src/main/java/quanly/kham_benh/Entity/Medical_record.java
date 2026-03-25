@@ -2,10 +2,7 @@ package quanly.kham_benh.Entity;
 
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
@@ -14,15 +11,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "prescriptions")
+@Builder
+@Table(name = "medical_records")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Prescriptions {
+public class Medical_record {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
     String appointment_id;
-    String content_text;
-    LocalDateTime created_at;
 
+    String symptoms,diagnosis,notes;
+    LocalDateTime created_at;
 }

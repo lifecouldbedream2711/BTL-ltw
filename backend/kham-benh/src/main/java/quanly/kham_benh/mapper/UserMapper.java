@@ -7,12 +7,12 @@ import quanly.kham_benh.Dto.request.DoctorCreationRequest;
 import quanly.kham_benh.Dto.request.PatientCreationRequest;
 import quanly.kham_benh.Dto.request.UserCreationRequest;
 import quanly.kham_benh.Dto.request.UserUpdateRequest;
-import quanly.kham_benh.Entity.Users;
+import quanly.kham_benh.Entity.User;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-    Users toUser(UserCreationRequest request);
-    void UpdateUser(@MappingTarget Users users, UserUpdateRequest request);
-    Users toUser(PatientCreationRequest request);
-    Users toUser(DoctorCreationRequest request);
+    User toUser(UserCreationRequest request);
+    void UpdateUser(@MappingTarget User user, UserUpdateRequest request);
+    User toUser(PatientCreationRequest request);
+    User toUser(DoctorCreationRequest request);
 }

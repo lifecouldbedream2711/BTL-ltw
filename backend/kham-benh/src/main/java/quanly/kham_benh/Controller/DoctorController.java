@@ -2,14 +2,13 @@ package quanly.kham_benh.Controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import quanly.kham_benh.Dto.request.DoctorCreationRequest;
 import quanly.kham_benh.Dto.response.APIResponse;
 import quanly.kham_benh.Dto.response.DoctorResponse;
 import quanly.kham_benh.Service.DoctorService;
+
+import java.util.List;
 
 
 @RestController
@@ -27,6 +26,16 @@ public class DoctorController {
                 .code(200)
                 .message("Tạo bác sỹ thành công")
                 .result(doctorService.CreateDoctor(request))
+                .build();
+
+    }
+    @GetMapping("Get-all")
+    public APIResponse<List<DoctorResponse>> GetAllDoctor(){
+
+        return APIResponse.<List<DoctorResponse>>builder()
+                .code(200)
+                .message("lấy danh sách bác sỹ thành công")
+                .result(doctorService.GetAllDoctor())
                 .build();
 
     }

@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import quanly.kham_benh.Dto.request.PatientCreationRequest;
 
 import quanly.kham_benh.Dto.response.APIResponse;
+import quanly.kham_benh.Dto.response.DoctorResponse;
 import quanly.kham_benh.Dto.response.PatientResponse;
 import quanly.kham_benh.Entity.PatientProfile;
 import quanly.kham_benh.Service.PatientService;
+
+import java.util.List;
 
 
 @RestController
@@ -26,5 +29,15 @@ public class PatientController {
                 .code(200)
                 .result(patientService.createPatient(request))
                 .build();
+    }
+    @GetMapping("Get-all")
+    public APIResponse<List<PatientResponse>> GetAllDoctor(){
+
+        return APIResponse.<List<PatientResponse>>builder()
+                .code(200)
+                .message("lấy danh sách bác sỹ thành công")
+                .result(patientService.GetAllPatient())
+                .build();
+
     }
 }

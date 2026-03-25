@@ -2,21 +2,18 @@ package quanly.kham_benh.Entity;
 
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
-
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "services")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Services {
+public class MedicalService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -26,5 +23,6 @@ public class Services {
     @Column(precision = 12, scale = 2)
     BigDecimal price;
     int duration_min;
-    boolean is_active;
+    @Column(name = "is_active")
+    boolean active;
 }

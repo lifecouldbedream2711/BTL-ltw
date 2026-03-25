@@ -11,11 +11,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PatientResponse {
-    // Thông tin user
+    String id;
     String phone;
     String full_name;
     String email;
     String password_hash;
+
     // Thông tin patient
     LocalDate dob;
     String gender;
