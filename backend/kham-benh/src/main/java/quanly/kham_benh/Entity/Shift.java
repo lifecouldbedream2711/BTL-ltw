@@ -34,6 +34,8 @@ public class Shift {
 
     @Column(name = "slot_min")
     int slotMin;
+    @Column(name = "is_bookable")
+    Boolean bookable;
 
     @Column(name = "max_patients")
     int maxPatients;

@@ -17,6 +17,9 @@ public enum ErrorCode {
     DOCTOR_NOT_FOUND(1001,"Bác sỹ không tồn tại", HttpStatus.INTERNAL_SERVER_ERROR),
     PATIENT_NOT_FOUND(1001,"Bệnh nhân không tồn tại", HttpStatus.INTERNAL_SERVER_ERROR),
     SHIFT_NOT_FOUND(1001,"Ca làm không tồn tại", HttpStatus.INTERNAL_SERVER_ERROR),
+    APPOINTMENT_TIME_REGISTED(1003,"khung giờ bị trùng với ca khác đã được duyệt", HttpStatus.INTERNAL_SERVER_ERROR),
+    APPOINTMENT_NOT_FOUND(1001,"Đơn khám không tồn tại", HttpStatus.INTERNAL_SERVER_ERROR),
+    RECORD_NOT_FOUND(1001,"Lịch sử không tồn tại", HttpStatus.INTERNAL_SERVER_ERROR),
 
     SPECIALTY_EXISTSED(1002,"đã tồn tại khoa này", HttpStatus.INTERNAL_SERVER_ERROR),
     SERVICE_EXISTSED(1003,"Dịch vụ này đã tồn tại", HttpStatus.INTERNAL_SERVER_ERROR),

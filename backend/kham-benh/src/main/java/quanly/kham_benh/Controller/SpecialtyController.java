@@ -6,16 +6,16 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
-import quanly.kham_benh.Dto.request.AddSpecialtyRequest;
-import quanly.kham_benh.Dto.request.SpecialtyCreationRequest;
-import quanly.kham_benh.Dto.request.UserCreationRequest;
+import quanly.kham_benh.Dto.request.*;
 import quanly.kham_benh.Dto.response.APIResponse;
 import quanly.kham_benh.Dto.response.AddSpecialtyResponse;
 import quanly.kham_benh.Dto.response.SpecialtyResponse;
 import quanly.kham_benh.Entity.User;
+import quanly.kham_benh.Interface.SpecialtySummaryProjection;
 import quanly.kham_benh.Service.AdminService;
 import quanly.kham_benh.Service.SpecialtyService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -50,6 +50,17 @@ public class SpecialtyController {
                 .result(specialtyService.GetAllSpecialty())
                 .build();
     }
+    // Controller (giữ style hiện tại)
+    @PostMapping("/Specialty/get-by-name")
+    public APIResponse<List<SpecialtySummaryProjection>> getByName(
+            @RequestBody SearchSpecialtyRequest request
+    ) {
+        APIResponse<List<SpecialtySummaryProjection>> res = new APIResponse<>();
+        res.setCode(0);
+        res.setMessage("Success");
+        res.setResult(specialtyService.searchSummaryByName(request.getName()));
+        return res;
+    }
     @DeleteMapping("/Delete/{id}")
     public APIResponse<String> DeleteSpecialty(@PathVariable("id") String id){
         return APIResponse.<String>builder()
@@ -64,6 +75,28 @@ public class SpecialtyController {
                 .code(200)
                 .message("add success")
                 .result(specialtyService.AddSpecialty(request))
+                .build();
+    }
+    @GetMapping("/  get-all-summary")
+    public APIResponse<List<SpecialtySummaryProjection>> getAllSummary() {
+        APIResponse<List<SpecialtySummaryProjection>> res = new APIResponse<>();
+        res.setCode(0);
+        res.setMessage("Success");
+        res.setResult(specialtyService.getAllSpecialtySummary());
+        return res;
+    }
+    @PutMapping("/add-many-doctor")
+    public APIResponse<List<AddSpecialtyResponse>> AddManyDoctor(@RequestBody  List<AddSpecialtyRequest> request){
+        List<AddSpecialtyResponse> result=new ArrayList<>();
+
+        request.forEach(
+                item-> result.add(specialtyService.AddSpecialty(item))
+        );
+
+        return APIResponse.<List<AddSpecialtyResponse>>builder()
+                .code(200)
+                .message("add success")
+                .result(result)
                 .build();
     }
 }

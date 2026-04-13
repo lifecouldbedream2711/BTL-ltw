@@ -12,6 +12,6 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MedicalRecordCreationRequest {
 
-    String appointment_id,symptoms,diagnosis,notes;
+    String appointmentId,symptoms,diagnosis,notes;
 }
 

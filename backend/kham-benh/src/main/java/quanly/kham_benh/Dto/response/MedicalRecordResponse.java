@@ -12,5 +12,5 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MedicalRecordResponse {
     String id;
-    String appointment_id,symptoms,diagnosis,notes;
+    String appointmentId,symptoms,diagnosis,notes;
 }

@@ -19,12 +19,12 @@ export default function PatientLayout({
             <p>Search</p>
           </SideBarButton>
 
-          <SideBarButton active={activeTab === "booking"} onClick={() => setActiveTab("booking")}>
+          <SideBarButton className="hidden" active={activeTab === "booking"} onClick={() => setActiveTab("booking")}>
             <i className="fa-regular fa-calendar" />
             <p>Book a Appointment</p>
           </SideBarButton>
 
-          <SideBarButton
+          <SideBarButton 
             active={activeTab === "myAppointment"}
             onClick={() => setActiveTab("myAppointment")}
           >
@@ -45,7 +45,7 @@ export default function PatientLayout({
 
         <div
           className={
-            "bg-gray-100 ml-10 mt-10 p-3 rounded-2xl h-full shadow-md w-[75%] " +
+            "bg-gray-100 ml-10 mt-10 p-3 rounded-2xl h-full shadow-md w-[75%]  min-h-screen " +
             className
           }
         >

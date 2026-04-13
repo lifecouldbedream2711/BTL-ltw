@@ -13,9 +13,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ServiceCreationRequest {
-    String specialty_id,name,description;
+    String specialtyId,name,description;
     BigDecimal price;
-    int duration_min;
+    int durationMin;
     boolean active;
 }
 

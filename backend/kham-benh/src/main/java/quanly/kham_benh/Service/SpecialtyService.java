@@ -15,6 +15,7 @@ import quanly.kham_benh.Entity.Specialty;
 import quanly.kham_benh.Entity.User;
 import quanly.kham_benh.Exception.AppException;
 import quanly.kham_benh.Exception.ErrorCode;
+import quanly.kham_benh.Interface.SpecialtySummaryProjection;
 import quanly.kham_benh.Repository.*;
 import quanly.kham_benh.enums.Role;
 import quanly.kham_benh.mapper.SpecialtyMapper;
@@ -66,6 +67,22 @@ public class SpecialtyService {
         });
         return result;
     }
+    // Service
+    public List<SpecialtySummaryProjection> searchSummaryByName(String name) {
+        return specialtyRepository.searchSummaryByName(name);
+    }
+    public List<SpecialtyResponse> GetSpecialtyByName(String name){
+        List<Specialty> specialtyList= specialtyRepository.findSpecialtyByName(name);
+        List<SpecialtyResponse> result = new ArrayList<>();
+
+        specialtyList.forEach(item -> {
+            result.add(specialtyMapper.toResponse(item));
+        });
+        return result;
+    }
+    public List<SpecialtySummaryProjection> getAllSpecialtySummary() {
+        return specialtyRepository.getAllSpecialtySummary();
+    }
     public AddSpecialtyResponse AddSpecialty(AddSpecialtyRequest request){
         DoctorProfile doctorProfile = doctorRepository.findById(request.getDoctorId())
                 .orElseThrow(()-> new AppException(ErrorCode.USER_NOT_FOUND));
@@ -73,9 +90,9 @@ public class SpecialtyService {
                 .orElseThrow(()-> new AppException(ErrorCode.SPECIALTY_EXISTSED));
         User user=userRepository.findById(request.getDoctorId())
                 .orElseThrow(()-> new AppException(ErrorCode.USER_NOT_FOUND));
-        doctorProfile.setSpecialty_id(specialty.getId());
+        doctorProfile.setSpecialtyId(specialty.getId());
 
-        doctorProfile.setSpecialty_id(request.getSpecialtyId());
+        doctorProfile.setSpecialtyId(request.getSpecialtyId());
         doctorRepository.save(doctorProfile);
 
         return AddSpecialtyResponse.builder()

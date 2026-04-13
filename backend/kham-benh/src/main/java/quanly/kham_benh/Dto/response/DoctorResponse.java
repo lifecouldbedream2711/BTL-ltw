@@ -15,6 +15,7 @@ public class DoctorResponse {
     String id;
     String phone;
     String full_name;
+    String specialtyId;
     String email;
     String password_hash;
     String license_no,bio;

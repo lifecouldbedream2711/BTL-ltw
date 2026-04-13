@@ -19,8 +19,12 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.crypto.spec.SecretKeySpec;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -52,17 +56,35 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(request -> request
-                .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
-                .requestMatchers("/users/get-user").hasAuthority("SCOPE_PATIENT")
-                .anyRequest().authenticated()
-        );
-        httpSecurity.oauth2ResourceServer(oauth2 -> oauth2.jwt(
-                jwtConfigurer -> jwtConfigurer
-                        .decoder(jwtDecoder())));
-        httpSecurity.csrf(AbstractHttpConfigurer::disable);
+        httpSecurity
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // thêm dòng này
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(request -> request
+                        .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/Authenticate/**").permitAll()
+                        .anyRequest().permitAll() // tạm dev
+                )
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(
+                        jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder())
+                ));
 
         return httpSecurity.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("http://localhost:5173"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+        config.setExposedHeaders(List.of("Authorization"));
+        config.setAllowCredentials(true);
+        config.setMaxAge(3600L);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
     }
 
     @Bean
@@ -89,5 +111,6 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(10);
     }
+
 
 }

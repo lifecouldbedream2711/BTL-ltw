@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ServiceResponse {
     String id;
-    String specialty_id,name,description;
+    String specialtyId,name,description;
     BigDecimal price;
-    int duration_min;
+    int durationMin;
     boolean active;
 }

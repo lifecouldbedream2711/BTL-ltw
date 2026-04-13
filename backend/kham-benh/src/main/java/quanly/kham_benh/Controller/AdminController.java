@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Admin")
-@Tag(name = "Admin API", description = "Các API quản lý user")
+@Tag(name = "Admin API", description = "Các API quản lý Admin")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE,makeFinal = true)
 public class AdminController {

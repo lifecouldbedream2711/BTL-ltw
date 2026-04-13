@@ -76,30 +76,29 @@ public class AuthenticationService {
                 .build();
 
     }
-        private String generateToken(User user){
-            JWSHeader header =new JWSHeader(JWSAlgorithm.HS512    );
+    private String generateToken(User user){
+        JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
 
-            JWTClaimsSet jwtClaimsSet= new  JWTClaimsSet.Builder()
-                    .subject(user.getEmail())
-                    .issuer("hello niggas")
-                    .issueTime(new Date())
-                    .expirationTime(new Date(Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()
-                    ))
-                    .claim("scope", user.getRole())
-                    .build();
+        JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
+                .subject(user.getEmail())
+                .issuer("kham-benh-api")
+                .issueTime(new Date())
+                .expirationTime(new Date(Instant.now().plus(5, ChronoUnit.HOURS).toEpochMilli()))
+                .claim("scope", user.getRole())
+                .claim("user_name", user.getFull_name())
+                .claim("userId", user.getId())   // thêm dòng này
+                .build();
 
-            Payload payload=new Payload(jwtClaimsSet.toJSONObject());
+        Payload payload = new Payload(jwtClaimsSet.toJSONObject());
+        JWSObject jwsObject = new JWSObject(header, payload);
 
-
-            JWSObject jwsObject =new JWSObject(header,payload);
-
-            try{
-                jwsObject.sign(new MACSigner(SIGNER_KEY.getBytes()));
-                return jwsObject.serialize();
-            } catch (JOSEException exception){
-                log.error("cant create JWT key ",exception);
-                throw new RuntimeException(exception);
-            }
+        try{
+            jwsObject.sign(new MACSigner(SIGNER_KEY.getBytes()));
+            return jwsObject.serialize();
+        } catch (JOSEException exception){
+            log.error("cant create JWT key ", exception);
+            throw new RuntimeException(exception);
         }
+    }
 
 }

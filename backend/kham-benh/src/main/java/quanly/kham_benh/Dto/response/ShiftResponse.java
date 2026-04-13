@@ -20,6 +20,7 @@ public class ShiftResponse {
     LocalTime startTime;
     LocalTime endTime;
     int slotMin;
+    Boolean bookable;
     int maxPatients;
     String note;
 }

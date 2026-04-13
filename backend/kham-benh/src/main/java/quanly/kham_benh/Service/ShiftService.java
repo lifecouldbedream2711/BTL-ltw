@@ -4,7 +4,9 @@ package quanly.kham_benh.Service;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import quanly.kham_benh.Dto.request.FindShiftInDayRequest;
 import quanly.kham_benh.Dto.request.ShiftCreationRequest;
 import quanly.kham_benh.Dto.response.ShiftResponse;
 import quanly.kham_benh.Entity.Shift;
@@ -28,14 +30,15 @@ public class ShiftService {
 
         List<Shift> shiftList=shiftRepository.findByShiftDate(request.getShiftDate());
         shiftList.forEach(item->{
-            if(isBetween(request.getStartTime(),item.getStartTime(),item.getEndTime())||
-                    isBetween(request.getEndTime(),item.getStartTime(),item.getEndTime()))
+            if(item.getId().equalsIgnoreCase(request.getDoctorId())&&(isBetween(request.getStartTime(),item.getStartTime(),item.getEndTime())||
+                    isBetween(request.getEndTime(),item.getStartTime(),item.getEndTime())))
                 throw new AppException(ErrorCode.TIME_REGISTED);
         });
         if(!doctorRepository.existsById(request.getDoctorId()))
             throw new AppException(ErrorCode.DOCTOR_NOT_FOUND);
 
         Shift shift=shiftMapper.toShift(request);
+        shift.setBookable(true);
         shiftRepository.save(shift);
         return shiftMapper.toResponse(shift);
     }
@@ -50,6 +53,31 @@ public class ShiftService {
         List<ShiftResponse> result=shiftMapper.toResponseList(shiftList);
 
         return result;
+    }
+    public List<ShiftResponse> FinByDoctorAndDate(FindShiftInDayRequest request){
+        List<Shift> shiftList= shiftRepository.findByDoctorIdAndShiftDate(request.getDoctorId(),request.getShiftDate());
+        List<ShiftResponse> result=shiftMapper.toResponseList(shiftList);
+
+        return result;
+    }
+    public List<String> FindSlotbyDate(FindShiftInDayRequest request){
+        return shiftRepository.findShiftSlotsInDay(request.getDoctorId(),request.getShiftDate());
+    }
+    public String TurnOffBookable(String id){
+        Shift shift=shiftRepository.findById(id).orElseThrow(
+                ()-> new AppException(ErrorCode.SHIFT_NOT_FOUND)
+        );
+        shift.setBookable(false);
+        shiftRepository.save(shift);
+        return "tắt đăng ký khám trong ca làm thành công";
+    }
+    public String TurnOnBookable(String id){
+        Shift shift=shiftRepository.findById(id).orElseThrow(
+                ()-> new AppException(ErrorCode.SHIFT_NOT_FOUND)
+        );
+        shift.setBookable(true);
+        shiftRepository.save(shift);
+        return "tắt đăng ký khám trong ca làm thành công";
     }
     public boolean isBetween(LocalTime target, LocalTime start, LocalTime end) {
         return !target.isBefore(start) && !target.isAfter(end);

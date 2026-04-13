@@ -17,8 +17,9 @@ public class DoctorProfile {
     @Id
     String id;
 
-
-    String specialty_id,license_no,bio;
+    @Column(name = "specialty_id")
+    private String specialtyId;
+    private String license_no,bio;
 
     @OneToOne
     @MapsId

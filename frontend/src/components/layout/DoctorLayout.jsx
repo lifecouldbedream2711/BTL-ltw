@@ -34,7 +34,7 @@ export default function DoctorLayout({
     
             <div
                 className={
-                "bg-gray-100 ml-10 mt-10 p-3 rounded-2xl h-full shadow-md w-[75%] " +
+                "bg-gray-100 ml-10 mt-10 p-3 rounded-2xl h-full shadow-md  min-h-screen  w-[75%] " +
                 className
                 }
             >

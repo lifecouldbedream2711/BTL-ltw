@@ -20,9 +20,10 @@ public class AppointmentCreationRequest {
     String patientId;
     String serviceId;
     String shiftId;
+    @Schema(defaultValue = "PENDING")
     String status;
     String reason;
-    @Schema(type = "string", example = "12:00")
+    @Schema(type = "string", example = "6:00")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     LocalTime startAt;
 

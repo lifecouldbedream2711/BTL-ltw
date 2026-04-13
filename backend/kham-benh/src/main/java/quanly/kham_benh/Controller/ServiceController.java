@@ -7,14 +7,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 import quanly.kham_benh.Dto.request.AddSpecialtyRequest;
+import quanly.kham_benh.Dto.request.MedicalRecordCreationRequest;
+import quanly.kham_benh.Dto.request.MedicalServiceSearchRequest;
 import quanly.kham_benh.Dto.request.ServiceCreationRequest;
 import quanly.kham_benh.Dto.response.APIResponse;
 import quanly.kham_benh.Dto.response.AddSpecialtyResponse;
 import quanly.kham_benh.Dto.response.ServiceResponse;
 import quanly.kham_benh.Dto.response.SpecialtyResponse;
+import quanly.kham_benh.Entity.MedicalService;
 import quanly.kham_benh.Service.MedicalServiceService;
 import quanly.kham_benh.Service.SpecialtyService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,16 +49,28 @@ public class ServiceController {
     public APIResponse<List<ServiceResponse>> GetAllService(){
         return APIResponse.<List<ServiceResponse>>builder()
                 .code(200)
-                .message("Get all specialty success")
+                .message("Get all service success")
                 .result(medicalServiceService.GetAllService())
                 .build();
     }
-    @GetMapping("/find-by-key/{key}")
-    public APIResponse<List<ServiceResponse>> FindService(@PathVariable("key") String key){
+    @PostMapping("/find-by-key")
+    public APIResponse<List<MedicalService>> FindService(@RequestBody MedicalServiceSearchRequest request){
+        return APIResponse.<List<MedicalService>>builder()
+                .code(200)
+                .message("Get Service by key success")
+                .result(medicalServiceService.search(request))
+                .build();
+    }
+    @PostMapping("/create-many")
+    public APIResponse<List<ServiceResponse>> createMany(@RequestBody List<ServiceCreationRequest> request) {
+        List<ServiceResponse> result = new ArrayList<>();
+
+        request.forEach(item -> result.add(medicalServiceService.CreateService(item)));
+
         return APIResponse.<List<ServiceResponse>>builder()
                 .code(200)
-                .message("Get all specialty success")
-                .result(medicalServiceService.FindService(key))
+                .message("Create many services success")
+                .result(result)
                 .build();
     }
     @DeleteMapping("/Delete/{id}")
@@ -65,4 +81,5 @@ public class ServiceController {
                 .result(medicalServiceService.DeleteService(id))
                 .build();
     }
+
 }

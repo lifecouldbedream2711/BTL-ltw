@@ -1,11 +1,11 @@
 package quanly.kham_benh.Entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
+
 @Builder
 @Data
 @NoArgsConstructor
@@ -19,10 +19,19 @@ public class MedicalService {
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
-    String specialty_id,name,description;
+    @Column(name = "specialty_id")
+    String specialtyId;
+
+    String name;
+
+    String description;
+
     @Column(precision = 12, scale = 2)
     BigDecimal price;
-    int duration_min;
+
+    @Column(name = "duration_min")
+    Integer durationMin; // wrapper class để nullable
+
     @Column(name = "is_active")
-    boolean active;
+    Boolean active; // wrapper class để nullable
 }
